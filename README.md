@@ -10,10 +10,43 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 |--------|------|
 | `kabe` | リードエンジニアとしてアプリケーション設計の壁打ちを行う |
 | `issue` | 壁打ちしながら GitHub ISSUE の設計ドキュメントを作成する |
-| `implement` | GitHub ISSUE の番号を受け取り、内容を読んで実装する |
+| `bdd` | コード実装前に Given/When/Then 形式の振る舞いシナリオを定義する |
+| `implement` | GitHub ISSUE の番号を受け取り、BDD シナリオ定義 → TDD で実装する |
 | `pr` | 現在のブランチの変更から PR タイトル・本文を生成して投稿する |
 
-外部スキルに関しては`skills-lock.json`を確認してください。
+### ワークフロー
+
+```
+kabe（設計壁打ち）
+  └─ issue（GitHub Issue 作成）
+       └─ writing-plans（実装計画書作成）
+            └─ executing-plans（計画実行）
+                 ├─ implement（BDD シナリオ定義 → TDD 実装）
+                 ├─ systematic-debugging（バグ発生時）
+                 └─ verification-before-completion（完了検証）
+                      └─ requesting-code-review（レビュー依頼）
+                           └─ pr（PR 投稿）
+
+フロントエンド実装時（並走）:
+  ├─ next-best-practices
+  └─ web-design-guidelines
+```
+
+### 外部スキル (`skills-lock.json` 参照)
+
+| スキル | ソース | 説明 |
+|--------|--------|------|
+| `find-skills` | vercel-labs/skills | セッション内でスキルを検索・追加 |
+| `frontend-design` | anthropics/skills | 高品質フロントエンド UI 生成 |
+| `vercel-react-best-practices` | vercel-labs/agent-skills | React/Next.js パフォーマンス最適化 |
+| `grill-me` | mattpocock/skills | コードをソクラテス式問答でレビュー |
+| `writing-plans` | obra/superpowers | 実装計画書を作成 |
+| `executing-plans` | obra/superpowers | 計画書を読んでタスクを逐次実行 |
+| `systematic-debugging` | obra/superpowers | 根本原因調査から始めるデバッグ |
+| `verification-before-completion` | obra/superpowers | 完了宣言前の検証ゲート |
+| `requesting-code-review` | obra/superpowers | サブエージェントによるコードレビュー依頼 |
+| `next-best-practices` | vercel-labs/next-skills | Next.js ファイル規約・RSC・データパターン |
+| `web-design-guidelines` | vercel-labs/agent-skills | UI のデザイン・アクセシビリティ監査 |
 
 ## Installation
 
