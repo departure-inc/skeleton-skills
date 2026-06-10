@@ -61,10 +61,14 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 ## Installation
 
 ```sh
+# カレントプロジェクトにインストール
 curl -fsSL https://raw.githubusercontent.com/departure-inc/skeleton-skills/main/install.sh | sh
+
+# グローバル（$HOME）にインストール — 全プロジェクト共通
+curl -fsSL https://raw.githubusercontent.com/departure-inc/skeleton-skills/main/install.sh | sh -s -- --global
 ```
 
-`skills-lock.json` と各スキルがローカルにインストールされます。
+`skills-lock.json` と各スキルの実体（`.agents/skills/`）がインストールされ、Claude Code が参照する `.claude/skills/` に不足分のシンボリックリンクが自動作成されます（既存リンクには触れません）。
 
 
 ## Usage
