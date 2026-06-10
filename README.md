@@ -17,15 +17,25 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 ### ワークフロー
 
 ```
-kabe（設計壁打ち）
-  └─ issue（GitHub Issue 作成）
-       └─ writing-plans（実装計画書作成）
-            └─ executing-plans（計画実行）
-                 ├─ implement（BDD シナリオ定義 → TDD 実装）
-                 ├─ systematic-debugging（バグ発生時）
-                 └─ verification-before-completion（完了検証）
-                      └─ requesting-code-review（レビュー依頼）
-                           └─ pr（PR 投稿）
+設計:
+  kabe（設計壁打ち）
+    └─ issue（GitHub Issue 作成）
+
+実装（Issue の規模でルートを選択）:
+  軽量ルート（単一 Issue をそのまま実装）:
+    issue ─▶ implement（BDD シナリオ定義 → TDD 実装）
+
+  重量ルート（大きな機能を計画的に実装）:
+    issue ─▶ writing-plans（実装計画書作成）
+               └─ executing-plans（計画実行。各タスクで bdd を併用）
+
+横断ガード（フェーズを問わず自動発火）:
+  ├─ systematic-debugging（バグ・テスト失敗時）
+  └─ verification-before-completion（完了宣言前の検証）
+
+仕上げ:
+  requesting-code-review（レビュー依頼）
+    └─ pr（PR 投稿）
 
 フロントエンド実装時（並走）:
   ├─ next-best-practices
