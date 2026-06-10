@@ -60,11 +60,15 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 
 ## Installation
 
-```sh
-# カレントプロジェクトにインストール
-curl -fsSL https://raw.githubusercontent.com/departure-inc/skeleton-skills/main/install.sh | sh
+#### カレントプロジェクトにインストール
 
-# グローバル（$HOME）にインストール — 全プロジェクト共通
+```sh
+curl -fsSL https://raw.githubusercontent.com/departure-inc/skeleton-skills/main/install.sh | sh
+```
+
+#### グローバル（$HOME）にインストール — 全プロジェクト共通
+
+```sh
 curl -fsSL https://raw.githubusercontent.com/departure-inc/skeleton-skills/main/install.sh | sh -s -- --global
 ```
 
