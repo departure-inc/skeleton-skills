@@ -47,7 +47,9 @@ echo "  [downloaded] skills-lock.json"
 echo ""
 
 # skills-lock.json を元にインストール（実体は .agents/skills に置かれる）
-npx skills experimental_install
+# </dev/null: curl|sh 経由で実行されると npx が stdin(パイプ)を読み切ってしまい
+# その後のシェルスクリプトが実行されなくなるのを防ぐ
+npx skills experimental_install </dev/null
 
 # Claude Code は .claude/skills を参照するため、不足分のシンボリックリンクを補完する
 # （インストーラは実体の更新のみ行い、新規スキルのリンクを作らないことがある）
