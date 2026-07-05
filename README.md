@@ -10,9 +10,11 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 |--------|------|
 | `kabe` | リードエンジニアとしてアプリケーション設計の壁打ちを行う |
 | `issue` | 壁打ちしながら GitHub ISSUE の設計ドキュメントを作成する |
+| `prototype` | チャットでデザインをやり取りしながら Next.js + shadcn/ui + Tailwind CSS でプロトタイプをライブ構築する（動くプレビューを隣に常時表示） |
 | `bdd` | コード実装前に Given/When/Then 形式の振る舞いシナリオを定義する |
 | `implement` | GitHub ISSUE の番号を受け取り、BDD シナリオ定義 → TDD で実装する |
 | `pr` | 現在のブランチの変更から PR タイトル・本文を生成して投稿する |
+| `skeleton-generator` | skeleton-generator gem を Rails プロジェクトにインストールする |
 
 ### ワークフロー
 
@@ -20,6 +22,10 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 設計:
   kabe（設計壁打ち）
     └─ issue（GitHub Issue 作成）
+
+プロトタイピング:
+  prototype（動くプレビューを見ながらライブ構築）
+    └─ issue（本実装に進む場合は ISSUE 化）
 
 実装（Issue の規模でルートを選択）:
   軽量ルート（単一 Issue をそのまま実装）:
