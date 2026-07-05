@@ -6,6 +6,7 @@
     "kabe":        { "source": "departure-inc/skeleton-skills", "ref": "main" },
     "pr":          { "source": "departure-inc/skeleton-skills", "ref": "main" },
     "bdd":                { "source": "departure-inc/skeleton-skills", "ref": "main" },
+    "prototype":          { "source": "departure-inc/skeleton-skills", "ref": "main" },
     "skeleton-generator": { "source": "departure-inc/skeleton-skills", "ref": "main" },
 
     "find-skills":                    { "source": "vercel-labs/skills",          "ref": "main" },
