@@ -62,19 +62,20 @@ pnpm dlx shadcn@latest add <必要なコンポーネント>
 ## フェーズ 3：実装とライブプレビュー
 
 1. dev server をバックグラウンドで起動する（`pnpm dev`）。**起動ログで実際の URL を確認する**（3000 番が使用中だと別ポートになる）
-2. モックデータを用意し、画面を実装する
-3. Playwright で自己検証する：
+2. **画面分割プレビュー（最初に一度だけ）**：`scripts/split-preview.sh <URL>` を実行し、チャットの隣に動く画面を常時表示する
+   - cmux + Claude Code の場合：cmux が右に分割され、browser ペインに Web アプリが表示される
+   - それ以外：Chrome（なければデフォルトブラウザ）で URL を開くだけ（ウィンドウ位置は動かさない）
+   - **dev server 起動直後、実装より先に必ず実行する**。後回しにして忘れないこと。再実行するとペインが増えるので初回のみ
+   - 以降の変更は Fast Refresh で自動反映される
+3. モックデータを用意し、画面を実装する
+4. Playwright で自己検証する（**これはユーザーに見せる画面ではなく、裏側の自動チェック専用**。ユーザーが見るのは手順2で開いた画面分割/ブラウザの方）：
    - ページに navigate してからスクリーンショットを撮る（**navigate と撮影は必ず別ステップで順に実行する**。真っ白な画像が撮れたら navigate し直して撮り直す）
    - 表示崩れ・レイアウト破綻がないか（テキストの見切れ・はみ出しに注意）
    - コンソールエラーが出ていないか
    - 375px に resize してモバイル幅でも破綻しないか。目視に加えて `document.documentElement.scrollWidth === window.innerWidth` を evaluate で確認する（横スクロール検出。body が flex の場合、flex アイテムの `min-width:auto` でテーブル等の min-content が伝播しやすい → `min-w-0` で対処）
    - スクリーンショットの保存先が作業リポジトリを汚さないよう、確認後は画像・`.playwright-mcp/` を削除する
-4. 問題がなければ dev server の URL とスクリーンショットの確認結果を報告する
-5. **画面分割プレビュー**：`scripts/split-preview.sh <URL>` を実行し、チャットの隣に動く画面を常時表示する
-   - cmux + Claude Code の場合：cmux が右に分割され、browser ペインに Web アプリが表示される
-   - それ以外：Chrome（なければデフォルトブラウザ）で URL を開くだけ（ウィンドウ位置は動かさない）
-   - **初回に一度だけ実行する**。再実行するとペインが増える。以降の変更は Fast Refresh で自動反映される
    - cmux 環境では Playwright の代わりに `cmux browser snapshot` 等でも表示確認できる（`cmux docs browser` 参照）
+5. 問題がなければ dev server の URL とスクリーンショットの確認結果を報告する
 
 ## フェーズ 4：チャットで反復
 
