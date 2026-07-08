@@ -1,6 +1,7 @@
 #!/bin/sh
 # プロトタイプのライブプレビュー：Web アプリを右側に表示する
-# - cmux 内で実行された場合：cmux を右に分割して browser ペインで URL を表示
+# - cmux 内で実行された場合：cmux を右に分割して browser ペインで URL を表示し、
+#   そのペインの surface ハンドルを出力する（以降の自己検証で `cmux browser --surface <handle> ...` として再利用する）
 # - それ以外：Chrome（なければデフォルトブラウザ）で URL を開く（ウィンドウ位置は動かさない）
 # 使い方: split-preview.sh [URL]（デフォルト: http://localhost:3000）
 # 注意: 再実行するたびに cmux のペインが増えるので、初回のみ実行すること
@@ -9,8 +10,11 @@ set -e
 URL="${1:-http://localhost:3000}"
 
 if [ -n "$CMUX_BUNDLE_ID" ] && command -v cmux >/dev/null 2>&1; then
-  cmux new-pane --type browser --direction right --url "$URL" --focus false
-  echo "==> cmux の右ペインに ${URL} を表示しました"
+  RESULT="$(cmux browser open "$URL" --focus false)"
+  echo "$RESULT"
+  SURFACE="$(echo "$RESULT" | grep -o 'surface=surface:[0-9]*' | cut -d= -f2)"
+  echo "==> cmux の右ペインに ${URL} を表示しました（surface: ${SURFACE}）"
+  echo "==> 以降の自己検証はこのペインに対して \`cmux browser --surface ${SURFACE} <subcommand>\` で行うこと（Playwright で別ウィンドウを開かない）"
 elif [ -d "/Applications/Google Chrome.app" ]; then
   open -a "Google Chrome" "$URL"
   echo "==> Chrome で ${URL} を開きました"
