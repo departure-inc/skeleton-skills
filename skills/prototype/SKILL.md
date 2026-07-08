@@ -50,7 +50,7 @@ pnpm dlx shadcn@latest init -d
 pnpm dlx shadcn@latest add <必要なコンポーネント>
 ```
 
-- **`ERR_PNPM_IGNORED_BUILDS` でインストールが中断された場合**（pnpm 11+ は sharp 等のビルドスクリプトをデフォルトでブロックする）：生成された `pnpm-workspace.yaml` を書き換えてビルドを許可し、`pnpm install` をやり直す
+- **`ERR_PNPM_IGNORED_BUILDS` でインストールが中断された場合**（pnpm 11+ は sharp 等のビルドスクリプトをデフォルトでブロックする）：生成された `pnpm-workspace.yaml` にはすでに `allowBuilds`/`ignoredBuiltDependencies` のプレースホルダが入っているので、**追記ではなくその既存ブロックを書き換えて**ビルドを許可し、`pnpm install` をやり直す（追記すると重複キーでエラーになる）
   ```yaml
   allowBuilds:
     sharp: true
