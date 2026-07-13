@@ -8,6 +8,7 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 
 | スキル | 説明 |
 |--------|------|
+| `company-knowledge` | 社内ナレッジ正本（`rawhide/skeleton`）を解決し、地図→領域→個別の順で読む |
 | `kabe` | リードエンジニアとしてアプリケーション設計の壁打ちを行う |
 | `issue` | 壁打ちしながら GitHub ISSUE の設計ドキュメントを作成する |
 | `prototype` | チャットでデザインをやり取りしながら Next.js + shadcn/ui + Tailwind CSS でプロトタイプをライブ構築する（動くプレビューを隣に常時表示） |
@@ -34,6 +35,9 @@ Cursor / Claude エージェント向けの汎用スキル集です。
   重量ルート（大きな機能を計画的に実装）:
     issue ─▶ writing-plans（実装計画書作成）
                └─ executing-plans（計画実行。各タスクで bdd を併用）
+
+横断（社内知・フェーズを問わず）:
+  └─ company-knowledge（社内規約・設計標準・メソドロジが必要なとき）
 
 横断ガード（フェーズを問わず自動発火）:
   ├─ systematic-debugging（バグ・テスト失敗時）
@@ -80,6 +84,19 @@ curl -fsSL https://raw.githubusercontent.com/departure-inc/skeleton-skills/main/
 
 `skills-lock.json` と各スキルの実体（`.agents/skills/`）がインストールされ、Claude Code が参照する `.claude/skills/` に不足分のシンボリックリンクが自動作成されます（既存リンクには触れません）。
 
+
+## company-knowledge（社内ナレッジ）
+
+正本は各プロダクトに置かず、マシン上の `rawhide/skeleton` を1つ参照する。
+
+ルート解決順:
+
+1. `COMPANY_KNOWLEDGE_ROOT`
+2. `~/.config/company/knowledge-root`（1行の絶対パス）
+3. `$HOME/.config/company/skeleton`
+
+常時ルール用の極薄文面は `skills/company-knowledge/references/always-on-snippet.md`。
+Cursor User Rules と Claude Code の `~/.claude/CLAUDE.md` など、ツール側のグローバル指示に同じsnippetを置く（Skill 本体は Cursor / Claude 共通）。
 
 ## Usage
 

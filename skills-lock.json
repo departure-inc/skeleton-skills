@@ -1,6 +1,13 @@
 {
   "version": 1,
   "skills": {
+    "company-knowledge": {
+      "source": "departure-inc/skeleton-skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/company-knowledge/SKILL.md",
+      "computedHash": "74165717b9bf7517acac848fb8f414b5af3c6d320b1a7c03af12b3a71fd0e5d3"
+    },
     "bdd": {
       "source": "departure-inc/skeleton-skills",
       "ref": "main",
