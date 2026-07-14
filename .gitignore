@@ -4,3 +4,4 @@ log/
 .agents/
 .claude/
 .DS_Store
+.playwright-cli/
