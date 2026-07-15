@@ -8,7 +8,7 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 
 | スキル | 説明 |
 |--------|------|
-| `company-knowledge` | 社内ナレッジ正本（`rawhide/skeleton`）を解決し、地図→領域→個別の順で読む |
+| `company-knowledge` | 社内ナレッジ・プロジェクト資料正本を解決し、地図→領域→個別の順で読む |
 | `kabe` | リードエンジニアとしてアプリケーション設計の壁打ちを行う |
 | `issue` | 壁打ちしながら GitHub ISSUE の設計ドキュメントを作成する |
 | `prototype` | チャットでデザインをやり取りしながら Next.js + shadcn/ui + Tailwind CSS でプロトタイプをライブ構築する（動くプレビューを隣に常時表示） |
@@ -87,7 +87,7 @@ curl -fsSL https://raw.githubusercontent.com/departure-inc/skeleton-skills/main/
 
 ## company-knowledge（社内ナレッジ）
 
-正本は各プロダクトに置かず、マシン上の `rawhide/skeleton` を1つ参照する。
+正本は各プロダクトに置かず、マシン上の社内ナレッジ・プロジェクト資料正本を1つ参照する。
 
 ルート解決順:
 
