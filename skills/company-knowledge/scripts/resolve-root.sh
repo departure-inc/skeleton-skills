@@ -29,5 +29,5 @@ fi
 
 echo "company-knowledge: root not found." >&2
 echo "Set COMPANY_KNOWLEDGE_ROOT, or write an absolute path to ${config_file}," >&2
-echo "or clone rawhide/skeleton to \$HOME/.config/company/skeleton." >&2
+echo "or clone the company knowledge repo to \$HOME/.config/company/skeleton." >&2
 exit 1
