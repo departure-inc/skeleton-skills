@@ -51,24 +51,37 @@ echo ""
 # その後のシェルスクリプトが実行されなくなるのを防ぐ
 npx skills experimental_install </dev/null
 
-# Claude Code は .claude/skills を参照するため、不足分のシンボリックリンクを補完する
+# 各エージェントは実体(.agents/skills)を直接参照しないため、不足分のシンボリックリンクを補完する
 # （インストーラは実体の更新のみ行い、新規スキルのリンクを作らないことがある）
 AGENTS_SKILLS_DIR="${TARGET_DIR}/.agents/skills"
-CLAUDE_SKILLS_DIR="${TARGET_DIR}/.claude/skills"
 
-if [ -d "$AGENTS_SKILLS_DIR" ]; then
-  mkdir -p "$CLAUDE_SKILLS_DIR"
-  for skill_path in "$AGENTS_SKILLS_DIR"/*/; do
-    [ -d "$skill_path" ] || continue
-    name=$(basename "$skill_path")
-    link="${CLAUDE_SKILLS_DIR}/${name}"
-    if [ ! -e "$link" ]; then
-      # 既存リンクには触れない。リンク切れの残骸は -f で張り替える
-      ln -sfn "../../.agents/skills/${name}" "$link"
-      echo "  [linked] .claude/skills/${name} -> ../../.agents/skills/${name}"
-    fi
-  done
+link_skills() {
+  agent_skills_dir="$1"
+  if [ -d "$AGENTS_SKILLS_DIR" ]; then
+    mkdir -p "$agent_skills_dir"
+    for skill_path in "$AGENTS_SKILLS_DIR"/*/; do
+      [ -d "$skill_path" ] || continue
+      name=$(basename "$skill_path")
+      link="${agent_skills_dir}/${name}"
+      if [ ! -e "$link" ]; then
+        # 既存リンクには触れない。リンク切れの残骸は -f で張り替える
+        ln -sfn "../../.agents/skills/${name}" "$link"
+        echo "  [linked] ${agent_skills_dir#$TARGET_DIR/}/${name} -> ../../.agents/skills/${name}"
+      fi
+    done
+  fi
+}
+
+# Claude Code は .claude/skills を参照する
+link_skills "${TARGET_DIR}/.claude/skills"
+
+# Codex CLI は .codex/skills（グローバル時は $CODEX_HOME/skills、既定 ~/.codex/skills）を参照する
+if [ "$MODE" = "global" ]; then
+  CODEX_SKILLS_DIR="${CODEX_HOME:-${TARGET_DIR}/.codex}/skills"
+else
+  CODEX_SKILLS_DIR="${TARGET_DIR}/.codex/skills"
 fi
+link_skills "$CODEX_SKILLS_DIR"
 
 echo ""
 echo "==> Done!"
