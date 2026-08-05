@@ -43,12 +43,33 @@
       "skillPath": "skills/productivity/grill-me/SKILL.md",
       "computedHash": "f321507f77702a54af1db66549ec1685fc625390d06c57d7949cdcda8eb1b5c7"
     },
+    "deploy": {
+      "source": "departure-inc/skeleton-skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/deploy/SKILL.md",
+      "computedHash": "6ea6e13d5c5285f54dfedbf35ce5b33b38d5ac9ae555c8ab65de320408abbb40"
+    },
     "implement": {
       "source": "departure-inc/skeleton-skills",
       "ref": "main",
       "sourceType": "github",
       "skillPath": "skills/implement/SKILL.md",
       "computedHash": "9b0221d46b609f1a1b33f751eef40e3ac27d7c374337ee6c452469892de061bd"
+    },
+    "infra-build": {
+      "source": "departure-inc/skeleton-skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/infra-build/SKILL.md",
+      "computedHash": "90a3b247f2e1b36ff2cddc9933c6091dfffd3673d63eda191a2794de9e2eee81"
+    },
+    "infra-design": {
+      "source": "departure-inc/skeleton-skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/infra-design/SKILL.md",
+      "computedHash": "a9f55ace52706093d51161c06449081ed1338478d5ff313cf58ce963ae049f21"
     },
     "issue": {
       "source": "departure-inc/skeleton-skills",
