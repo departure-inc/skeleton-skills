@@ -15,6 +15,9 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 | `bdd` | コード実装前に Given/When/Then 形式の振る舞いシナリオを定義する |
 | `implement` | GitHub ISSUE の番号を受け取り、BDD シナリオ定義 → TDD で実装する |
 | `pr` | 現在のブランチの変更から PR タイトル・本文を生成して投稿する（フロント差分時は playwright-cli でスクショ埋め込み可） |
+| `infra-design` | インフラ構成の設計壁打ちを行い、構成図（壁打ち中は Mermaid、合意後は draw.io で清書・画像生成）と概算見積の骨子を作成する |
+| `infra-build` | infra-design で合意した構成を PaaS（Fly.io / Vercel + CI/CD）またはクラウド IaC（Terraform / CDK / Pulumi）で構築する |
+| `deploy` | 差分・リスクの洗い出しとロールバック手順の提示を自動で行い、stg までは自走・本番反映は承認後にのみ実行する |
 | `skeleton-generator` | skeleton-generator gem を Rails プロジェクトにインストールする |
 
 ### モデル / effort の使い分け
@@ -23,10 +26,10 @@ SKILL.md 自体には model / effort を指定するフロントマターがな�
 
 | 種別 | 対象スキル | 方針 |
 |------|-----------|------|
-| 対話系（一問ずつユーザーと往復する） | `kabe`, `issue` | サブエージェント化しない（Agent は呼び出し→自律実行→報告の一発勝負で、ターンごとの対話に不向き）。見落としコストが高い相談では、セッションのモデルを Opus に切り替えるようユーザーに提案する |
-| 自律系（承認ポイントが少なく大部分を自走できる） | `implement` | 重い判断（調査・シナリオ設計）だけ Agent ツール + `model: opus` に委譲できる。実装本体はセッションのデフォルトモデルのまま進める |
+| 対話系（一問ずつユーザーと往復する） | `kabe`, `issue`, `infra-design` | サブエージェント化しない（Agent は呼び出し→自律実行→報告の一発勝負で、ターンごとの対話に不向き）。見落としコストが高い相談では、セッションのモデルを Opus に切り替えるようユーザーに提案する |
+| 自律系（承認ポイントが少なく大部分を自走できる） | `implement`, `infra-build` | 重い判断（調査・シナリオ設計）だけ Agent ツール + `model: opus` に委譲できる。実装本体はセッションのデフォルトモデルのまま進める |
 | 検索・参照系 | `company-knowledge` | 機械的な読み込みが中心なのでモデル変更は不要。effort もデフォルトで十分 |
-| 手続き系 | `bdd`, `pr`, `skeleton-generator`, `prototype` | 反復速度を優先し、セッションのデフォルトモデル・デフォルトeffortのまま。深さが必要なら指示文の書き込み量で調整する（`code-review` スキルの `low/medium/high/xhigh/max` と同じ考え方） |
+| 手続き系 | `bdd`, `pr`, `skeleton-generator`, `prototype`, `deploy` | 反復速度を優先し、セッションのデフォルトモデル・デフォルトeffortのまま。深さが必要なら指示文の書き込み量で調整する（`code-review` スキルの `low/medium/high/xhigh/max` と同じ考え方） |
 
 ### ワークフロー
 
@@ -46,6 +49,12 @@ SKILL.md 自体には model / effort を指定するフロントマターがな�
   重量ルート（大きな機能を計画的に実装）:
     issue ─▶ writing-plans（実装計画書作成）
                └─ executing-plans（計画実行。各タスクで bdd を併用）
+
+インフラ（設計 → 構築 → リリース）:
+  infra-design（構成壁打ち: Mermaid で反復 → 合意後 draw.io で清書 + 見積骨子）
+    └─ issue（ISSUE 化）
+         └─ infra-build（正本の規約に従い PaaS or IaC を構築。承認1回）
+              └─ deploy（stg まで自走 → 本番は承認ゲート）
 
 横断（社内知・フェーズを問わず）:
   └─ company-knowledge（社内規約・設計標準・メソドロジが必要なとき）
