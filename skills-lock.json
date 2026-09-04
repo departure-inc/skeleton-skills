@@ -92,6 +92,12 @@
       "skillPath": ".agents/skills/next-best-practices/SKILL.md",
       "computedHash": "db85045827ebeb83ac8dbc992b69188755eeb74dcf01cbf5e694d58aa494a106"
     },
+    "onboard": {
+      "source": "departure-inc/skeleton-skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/onboard/SKILL.md"
+    },
     "pr": {
       "source": "departure-inc/skeleton-skills",
       "ref": "main",
