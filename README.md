@@ -11,10 +11,10 @@ Cursor / Claude エージェント向けの汎用スキル集です。
 | `company-knowledge` | 社内ナレッジ・プロジェクト資料正本を解決し、地図→領域→個別の順で読む |
 | `onboard` | 初見・引き継ぎのリポジトリを既存ファイルから読み解き、構造・ドメイン・暗黙規約・開発コマンドを出力する（実行系の検証はしない） |
 | `kabe` | リードエンジニアとしてアプリケーション設計の壁打ちを行う |
-| `issue` | 壁打ちしながら GitHub ISSUE の設計ドキュメントを作成する |
+| `issue` | 壁打ちしながら GitHub ISSUE を作成する（新機能は設計ドキュメント、保守は最小の修正方針に絞る） |
 | `prototype` | チャットでデザインをやり取りしながら Next.js + shadcn/ui + Tailwind CSS でプロトタイプをライブ構築する（動くプレビューを隣に常時表示） |
 | `bdd` | コード実装前に Given/When/Then 形式の振る舞いシナリオを定義する |
-| `implement` | GitHub ISSUE の番号を受け取り、BDD シナリオ定義 → TDD で実装する |
+| `implement` | GitHub ISSUE の番号を受け取り、BDD シナリオ定義 → TDD で実装する（bug / chore は最小差分で修正） |
 | `pr` | 現在のブランチの変更から PR タイトル・本文を生成して投稿する（フロント差分時は playwright-cli でスクショ埋め込み可） |
 | `infra-design` | インフラ構成の設計壁打ちを行い、構成図（壁打ち中は Mermaid、合意後は draw.io で清書・画像生成）と概算見積の骨子を作成する |
 | `infra-build` | infra-design で合意した構成を PaaS（Fly.io / Vercel + CI/CD）またはクラウド IaC（Terraform / CDK / Pulumi）で構築する |
@@ -47,7 +47,10 @@ SKILL.md 自体には model / effort を指定するフロントマターがな�
   prototype（動くプレビューを見ながらライブ構築）
     └─ issue（本実装に進む場合は ISSUE 化）
 
-実装（Issue の規模でルートを選択）:
+実装（Issue の種別・規模でルートを選択）:
+  保守ルート（不具合・小さな変更。最小の変更で確実に直す）:
+    issue（保守モード: 原因 → 最小の修正方針 → やらないこと）─▶ implement（再現テスト 1 本 or 手動確認手順 → 最小差分で修正）
+
   軽量ルート（単一 Issue をそのまま実装）:
     issue ─▶ implement（BDD シナリオ定義 → TDD 実装）
 
