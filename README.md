@@ -95,8 +95,6 @@ SKILL.md 自体には model / effort を指定するフロントマターがな�
 | `requesting-code-review` | obra/superpowers | サブエージェントによるコードレビュー依頼 |
 | `web-design-guidelines` | vercel-labs/agent-skills | UI のデザイン・アクセシビリティ監査 |
 
-> `next-best-practices` は配布元（vercel-labs/next-skills）でスキルとしての提供が終了したため外した。Next.js 16.3+ では同梱ドキュメントと `next dev` が生成する `AGENTS.md` / `CLAUDE.md` で代替される。
-
 ## Installation
 
 #### カレントプロジェクトにインストール
