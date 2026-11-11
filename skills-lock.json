@@ -85,13 +85,6 @@
       "skillPath": "skills/kabe/SKILL.md",
       "computedHash": "4215db3804319be640eff13f8bce12bcca6568e9084476e2f4b106a8c6abbd9e"
     },
-    "next-best-practices": {
-      "source": "vercel-labs/openreview",
-      "ref": "main",
-      "sourceType": "github",
-      "skillPath": ".agents/skills/next-best-practices/SKILL.md",
-      "computedHash": "db85045827ebeb83ac8dbc992b69188755eeb74dcf01cbf5e694d58aa494a106"
-    },
     "onboard": {
       "source": "departure-inc/skeleton-skills",
       "ref": "main",
@@ -148,11 +141,11 @@
       "computedHash": "9b446f0c7fe1cfb560b1d34439523b1a76d5f177290007b2c053a1c749a4a8ba"
     },
     "web-design-guidelines": {
-      "source": "vercel-labs/openreview",
+      "source": "vercel-labs/agent-skills",
       "ref": "main",
       "sourceType": "github",
-      "skillPath": ".agents/skills/web-design-guidelines/SKILL.md",
-      "computedHash": "f3bc47f890f42a44db1007ab390709ec368e4b8c089baee6b0007182236ac474"
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "4f68ae07187fb0d1fb78c88b503d089da4cf5a9d9625d1f2e425b1590bf96d92"
     },
     "writing-plans": {
       "source": "obra/superpowers",
