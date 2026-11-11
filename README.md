@@ -76,7 +76,7 @@ SKILL.md 自体には model / effort を指定するフロントマターがな�
     └─ pr（PR 投稿）
 
 フロントエンド実装時（並走）:
-  ├─ next-best-practices
+  ├─ vercel-react-best-practices
   └─ web-design-guidelines
 ```
 
@@ -93,7 +93,6 @@ SKILL.md 自体には model / effort を指定するフロントマターがな�
 | `systematic-debugging` | obra/superpowers | 根本原因調査から始めるデバッグ |
 | `verification-before-completion` | obra/superpowers | 完了宣言前の検証ゲート |
 | `requesting-code-review` | obra/superpowers | サブエージェントによるコードレビュー依頼 |
-| `next-best-practices` | vercel-labs/next-skills | Next.js ファイル規約・RSC・データパターン |
 | `web-design-guidelines` | vercel-labs/agent-skills | UI のデザイン・アクセシビリティ監査 |
 
 ## Installation

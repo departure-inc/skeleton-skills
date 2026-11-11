@@ -27,7 +27,7 @@ description: チャットでデザインをやり取りしながら、動くプ�
 利用可能なら以下のスキルを読み込んで従う：
 
 - `frontend-design` — 実装前に読み込み、テンプレ然としない意図あるビジュアルデザインにする
-- `next-best-practices` — Next.js のファイル規約・RSC 境界に従う
+- Next.js のファイル規約・RSC 境界は、Next.js 同梱ドキュメント（`node_modules/next/dist/docs/`）と `next dev` が生成する `AGENTS.md` / `CLAUDE.md` に従う（16.3+）
 - `vercel-react-best-practices` — React/Next.js のパフォーマンスパターンに従う
 - `web-design-guidelines` — ユーザーに UI レビューを求められたときに使用
 
